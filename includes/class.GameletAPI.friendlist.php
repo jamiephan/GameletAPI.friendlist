@@ -23,7 +23,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Pool;
 use GuzzleHttp\Psr7\Request;
 
-class friendlist extends GameletAPi {
+class friendlist extends GameletAPI {
 
 	public $username;
 
@@ -94,11 +94,7 @@ class friendlist extends GameletAPi {
 
 	public function _getFriendListPageNumber(){
 
-		$ch = curl_init("http://tw.gamelet.com/friends.do?username=" . $this->username);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_HEADER, false); 
-		$content = curl_exec($ch);
-		curl_close($ch);
+		$content = $this->cachedHTML;
 
 		phpQuery::newDocument($content);
 
@@ -114,7 +110,6 @@ class friendlist extends GameletAPi {
 
 		}
 
-		//Reuse the downloaded HTML to reduce bandwidth and execute time.
 		return array($tmp, $content);
 
 	}
@@ -192,27 +187,21 @@ class friendlist extends GameletAPi {
 
 	private function _isUserExist(){
 
-		$ch = curl_init("http://tw.gamelet.com/user.do?username=" . $this->username);
+		$ch = curl_init("http://tw.gamelet.com/friends.do?page=1&username=" . $this->username);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_HEADER, false); 
 		$content = curl_exec($ch);
 		curl_close($ch);
 
 		//Gamelet BUG: If user does not exist, the server will return a blank HTML with 200 OK response.
+
+		if (!($content == "")) {
+			$this->cachedHTML = $content;
+			//Save the cache!
+		}
 		return !($content == "");
 
 	}
 }
-
-
-
-// $test = new GameletAPI_friendlist("755600");
-// $test->execute();
-// echo 'Execution time : ' . $test->executeTime . ' seconds';
-// echo "\n\r";
-// echo 'Username "'. $test->username . '" have ' . $test->getFriendListNumber . ' friends.';
-// echo "\n\r";
-// echo json_encode($test->getFriendListArray, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-
 
  ?>
