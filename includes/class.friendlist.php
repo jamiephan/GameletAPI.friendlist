@@ -23,9 +23,6 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Pool;
 use GuzzleHttp\Psr7\Request;
 
-/**
-* 
-*/
 class GameletAPI_friendlist {
 
 	public $username;
