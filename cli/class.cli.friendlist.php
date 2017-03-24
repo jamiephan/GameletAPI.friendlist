@@ -58,12 +58,30 @@ class friendlist_cli{
 		echo "          php friendlist.php -h" . "\r\n";
 		die();
 	}
+
+	public function showResult(){
+			echo " ___ _   _  ___ ___ ___  ___ ___   _"                           . "\r\n";
+			echo "/ __| | | |/ __/ __/ _ \/ __/ __| | |"                          . "\r\n";
+			echo "\__ \ |_| | (_| (_|  __/\__ \__ \ |_|"                          . "\r\n";
+			echo "|___/\__,_|\___\___\___||___/___/ (_)"                          . "\r\n";
+			echo                                                                    "\r\n";
+			echo "The friend list had been successfully created!"                 . "\r\n";
+			echo                                                                    "\r\n";
+			echo "Request username: "    . "\t" . $this->username                  . "\r\n";
+			echo "Number of friend(s): " . "\t" . $this->listNumber                . "\r\n";
+			echo "Output file path: "    . "\t" . realpath($this->path)            . "\r\n";
+			echo "Output file format: "  . "\t" . strtoupper($this->outputformat)  . "\r\n";
+			echo "Execution time: "      . "\t" . $this->executeTime . " seconds"  . "\r\n";
+			echo                                                                    "\r\n";
+			echo "Thank you for using this program! --Jamie Phan [Lovemelody]"    . "\r\n";
+	}
 	public function execute(){
 		$friendlist = new GameletAPI_friendlist($this->username);
 		$friendlist->execute();
 		if ($friendlist->error !== false) {
 			die($friendlist->error);
 		}
+		$this->error = false;
 		$this->listArr = $friendlist->getFriendListArray;
 		$this->executeTime = $friendlist->executeTime;
 		$this->listNumber = $friendlist->getFriendListNumber;
@@ -83,6 +101,15 @@ class friendlist_cli{
 		  $this->error =  "Error: Failed to save the file to " . $path . ".";
 		} 
 		fclose($fileStream);
+	}
+
+	public function outputConsole(){
+			echo " ___ _   _  ___ ___ ___  ___ ___   _"                           . "\r\n";
+			echo "/ __| | | |/ __/ __/ _ \/ __/ __| | |"                          . "\r\n";
+			echo "\__ \ |_| | (_| (_|  __/\__ \__ \ |_|"                          . "\r\n";
+			echo "|___/\__,_|\___\___\___||___/___/ (_)"                          . "\r\n";
+			echo                                                                    "\r\n";
+		echo $this->_compileTXT();
 	}
 	public function compile(){
 		$content = "";

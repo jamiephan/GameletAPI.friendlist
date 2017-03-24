@@ -27,33 +27,33 @@ if (php_sapi_name() == 'cli') {
 		$cli->showhelp();
 	}
 	$username = $options['u'];
-	$output = $options['o'];
-	if (gettype($username) == "string" && gettype($output) == "string") {
+	if (gettype($username) == "string") {
 		$cli->username = urldecode($username);
 		$cli->execute();
-		$format = explode(".", $output);
-		$format = end($format);
-		$cli->outputformat = $format;
-		$cli->output($output);
-		if ($cli->error === false) {
-			echo " ___ _   _  ___ ___ ___  ___ ___   _"                           . "\r\n";
-			echo "/ __| | | |/ __/ __/ _ \/ __/ __| | |"                          . "\r\n";
-			echo "\__ \ |_| | (_| (_|  __/\__ \__ \ |_|"                          . "\r\n";
-			echo "|___/\__,_|\___\___\___||___/___/ (_)"                          . "\r\n";
-			echo                                                                    "\r\n";
-			echo "The friend list had been successfully created!"                 . "\r\n";
-			echo                                                                    "\r\n";
-			echo "Request username: "    . "\t" . $cli->username                  . "\r\n";
-			echo "Number of friend(s): " . "\t" . $cli->listNumber                . "\r\n";
-			echo "Output file path: "    . "\t" . realpath($cli->path)            . "\r\n";
-			echo "Output file format: "  . "\t" . strtoupper($cli->outputformat)  . "\r\n";
-			echo "Execution time: "      . "\t" . $cli->executeTime . " seconds"  . "\r\n";
-			echo                                                                    "\r\n";
-			echo "Thank you for using this program! --Jamie Phan [Lovemelody]"    . "\r\n";
+		if (array_key_exists("o", $options)) {
+			$output = $options['o'];		
+			$format = explode(".", $output);
+			$format = end($format);
+			$cli->outputformat = $format;
+			$cli->output($output);
+			if ($cli->error === false) {
+				$cli->showResult();
+			} else {
+				die($cli->error);
+			}
+			exit();
 		} else {
-			die($cli->error);
+			if ($cli->error === false) {
+				$cli->outputConsole();
+			} else {
+				die($cli->error);
+			}
 		}
-		exit();
+
+
+
+
+
 	} else {
 		$cli->showhelp();
 	}
