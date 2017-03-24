@@ -21,8 +21,8 @@
 del output.*
 php ../../cli/friendlist.php -h
 php ../../cli/friendlist.php -u jamiephan -o output.xml
-php ../../cli/friendlist.php -u xexex -o output.json
-php ../../cli/friendlist.php -u qoop12 -o output.php
-php ../../cli/friendlist.php -u lovemelody01 -o output.txt
-php ../../cli/friendlist.php -u haska -o output.csv
-php ../../cli/friendlist.php -u a840513 -o output.random
+php ../../cli/friendlist.php -u jamiephan -o output.json
+php ../../cli/friendlist.php -u jamiephan -o output.php
+php ../../cli/friendlist.php -u jamiephan -o output.txt
+php ../../cli/friendlist.php -u jamiephan -o output.csv
+php ../../cli/friendlist.php -u jamiephan -o output.rAnDomFiLe
