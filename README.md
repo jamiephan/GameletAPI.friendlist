@@ -117,17 +117,17 @@ Examples: php friendlist.php -u jamiephan -o /home/folder/list.json
 
 The tool will detect the file extension you had specified and output regarding to their format. The supported list are:
 
-- **.xml** - This will create a root element named `friendlist`. Each friend will wrap with a `friend` tag, since XML does not support arrays.
+- **.xml** - This will create a root element named `friendlist`. Each friend will wrap with a `friend` tag, since XML does not support arrays. [Example](https://github.com/jamiephan/GameletAPI.friendlist/blob/master/test/cli/output.xml)
 
-- **.json** - This will create a json compatable object with the friend list array.
+- **.json** - This will create a json compatable object with the friend list array. [Example](https://github.com/jamiephan/GameletAPI.friendlist/blob/master/test/cli/output.json)
 
-- **.csv** - This will create a CSV object.
+- **.csv** - This will create a CSV object. [Example](https://github.com/jamiephan/GameletAPI.friendlist/blob/master/test/cli/output.csv)
 
-- **.php** - This will create a PHP file with the array stored in, with the variable named `GameletAPI_friendlist`. You can dynamically include it in your projects (`include "output.php";`, assume output.php if the file name.)
+- **.php** - This will create a PHP file with the array stored in, with the variable named `GameletAPI_friendlist`. You can dynamically include it in your projects (`include "output.php";`, assume output.php if the file name). [Example](https://github.com/jamiephan/GameletAPI.friendlist/blob/master/test/cli/output.php)
 
-- **.txt** - This will show all the information about the request, including execution time, date, number of friends etc. This format is designed for human readable and not meant to be used programatically.
+- **.txt** - This will show all the information about the request, including execution time, date, number of friends etc. This format is designed for human readable and not meant to be used programatically. [Example](https://github.com/jamiephan/GameletAPI.friendlist/blob/master/test/cli/output.txt)
 
-**IMPORTANT: All other extensions will considered into `.txt` format.**
+**IMPORTANT: All other extensions will considered into `.txt` format.** [Example](https://github.com/jamiephan/GameletAPI.friendlist/blob/master/test/cli/output.rAnDomFiLe)
 
 ---
 
