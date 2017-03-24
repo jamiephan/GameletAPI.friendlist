@@ -17,42 +17,44 @@
                    |tw.gamelet.com/user.do?username=jamiephan|
                    +-----------------------------------------+
  ```
-# GameletAPI friendlist
-Provide API to access the friend list in Gamelet with multi-threading, In addition to providing CLI (Command Line Interface) and Web server.
+## What is GameletAPI friendlist?
 
+GameletAPI friendlist provide API to access the friend list in [Gamelet.com](http://tw.gamelet.com/games.do) with multi-threading. Also providing CLI (Command Line Interface) and Web server for users.
+
+---
 ## Requirements
 - PHP: `>=5.6.0`
-- `Composer`
-- Active network connection (Firewall etc)
-
+- PHP [Composer](https://getcomposer.org/)
+- Active network connection to [Gamelet](http://tw.gamelet.com/games.do).
+---
 ## Installation
 ```shell
 git clone https://github.com/jamiephan/GameletAPI.friendlist.git
-#Download the  repository from github
+#Download the repository from github and clone to the current directory
 
 cd GameletAPI.friendlist
-#Enter the directory
+#Enter the directory for friendlist
 
 composer install
-#Install the dependencies
+#Install the dependencies with composer
 ```
-
-## Intergration to your project
-Create a simple PHP script with the following code
+---
+## Intergrate GameletAPI.friendlist to your project.
+You can modify the following code to meet your needs, the following is just an simple example.
 ```PHP
 <?php
 
-	require 'path/to/GameletAPI.friendlist/includes/class.friendlist.php';
-	//Include the PHP class file, in /includes/class.friendlist.php.
+	require 'includes/class.friendlist.php';
+	//Include the PHP class file, under includes/class.friendlist.php.
 
 	$username = "jamiephan";
 	//Define a username.
 
 	$friendlist = new GameletAPI_friendlist($username);
-	//Create a new object with the given username variable.
+	//Create a new object with the given username as string in constructor.
 
 	$friendlist->execute();
-	//Execute the extraction.
+	//Execute the process (Download and analyse the HTML).
 
 	if ($friendlist->error === false) {
 	//Check if there is any errors, such as non-existing username etc.
@@ -74,22 +76,25 @@ Create a simple PHP script with the following code
 
 Before `$friendlist->execute()`:
 
-- `$friendlist->setKey("userID", "userNickname")` - Allow users to set the index key for the array, the default setting are `userID` and `userNickname`.
+- `$friendlist->setKey("userID", "userNickname")` - Allow users to set the index key for the array, the default setting are `userID` and `userNickname`. Only allow alphabetical letters.
 
 After `$friendlist->execute()`:
 
-- `$friendlist->executeTime` - Returns the total execution time in seconds.
+- `$friendlist->username` - Returns the initial request username (This is after `urldecode()`, converting `%40` to `@`).
 
-- `$friendlist->getFriendListNumber` - Returns the total amount of friend (using `sizeof()`)
+- `$friendlist->executeTime` - Returns the total execution time in seconds (The time that spent on downloading and analysing the HTML).
 
-
+- `$friendlist->getFriendListNumber` - Returns the total amount of friend.
+---
 ## Using the command line tool
 
-Navigate to the command line tool location
+Navigate to the command line tool folder under `cli`
 
 `cd cli`
 
-Enter `php friendlist.php -h` to see the command line information. Here is the copy:
+Enter `php friendlist.php -h` to see the command line information. 
+
+Here is the copy from the help:
 
 ```
 Usage: php friendlist.php
@@ -110,21 +115,23 @@ Examples: php friendlist.php -u jamiephan -o /home/folder/list.json
           php friendlist.php -h
 ```
 
-The tool will detect the file extension you had input and output with the correct format. the supported list are:
+The tool will detect the file extension you had specified and output regarding to their format. The supported list are:
 
-- **.xml** - This will create a root element named `friendlist` and a secondary element `friend`.
+- **.xml** - This will create a root element named `friendlist`. Each friend will wrap with a `friend` tag, since XML does not support arrays.
 
 - **.json** - This will create a json compatable object with the friend list array.
 
-- **.csv** - This will create a CSV object with the friend list array.
+- **.csv** - This will create a CSV object.
 
-- **.php** - This will create a PHP file with the array stored in, with the variable named `GameletAPI_friendlist`.
+- **.php** - This will create a PHP file with the array stored in, with the variable named `GameletAPI_friendlist`. You can dynamically include it in your projects (`include "output.php";`, assume output.php if the file name.)
 
-- **.txt** - This will show all the information about the request, including execution time, date, number of friends etc. This format is designed for human readable.
+- **.txt** - This will show all the information about the request, including execution time, date, number of friends etc. This format is designed for human readable and not meant to be used programatically.
 
-**All other extensions will considered into `.txt` format.**
+**IMPORTANT: All other extensions will considered into `.txt` format.**
 
-## Using the webserver
+---
+
+## Using the build-in Webserver script
 
 # !STILL UNDER DEVELOPMENT!
 
