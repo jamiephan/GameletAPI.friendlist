@@ -299,6 +299,8 @@ The supported formats are:
 
 All other formats (including not specify) will be considered as `/json`.
 
+for more information, please see https://github.com/jamiephan/GameletAPI.friendlist#formats-for-cli.
+
 #### Query parameters
 
 The webserver also allow query parameters, the supported params are:
@@ -307,7 +309,7 @@ The webserver also allow query parameters, the supported params are:
 
 - `NicknameKey` - Set the key for Nickname, default: `userNickname`
 
-- `forceDownload` - This will force the file to be downloaded from the browser (it ill keep the file extension as user specified, but will only convert `jsonp` into `json`). The default file name is `friendlist-{username}`, this cannot be changed, but will able in  future commits.
+- `forceDownload` - This will force the file to be downloaded from the browser (it will keep the file extension as specified, but ot will convert `jsonp` into `json`). The file name is `friendlist-{username}.{format}`, for example `friendlist-jamiephan.json`
 
 Example: `http://localhost:8080/jamiephan/json?IDKey=userID&NicknameKey=userNickname`
 
