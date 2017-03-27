@@ -34,27 +34,27 @@ GameletAPI friendlist provide API to access the friend list in [Gamelet.com](htt
   
 - [Using the command line tool](https://github.com/jamiephan/GameletAPI.friendlist#using-the-command-line-tool)
   
-  - [Formats for CLI]()
+  - [Formats for CLI](https://github.com/jamiephan/GameletAPI.friendlist#formats-for-cli)
 
 - [Using the build-in Webserver script](https://github.com/jamiephan/GameletAPI.friendlist#using-the-build-in-webserver-script)
 
   - [Configuration](https://github.com/jamiephan/GameletAPI.friendlist#using-the-build-in-webserver-script)
   
-    - [Apache]()
+    - [Apache](https://github.com/jamiephan/GameletAPI.friendlist#apache-configuration)
     
-    - [Nginx]()
+    - [Nginx](https://github.com/jamiephan/GameletAPI.friendlist#nginx-configuration)
     
-    - [IIS]()
+    - [IIS](https://github.com/jamiephan/GameletAPI.friendlist#iis)
     
-    - [lighttpd (>= 1.4.24)]()
+    - [lighttpd (>= 1.4.24)](https://github.com/jamiephan/GameletAPI.friendlist#lighttpd--1424)
   
   - [Testing](https://github.com/jamiephan/GameletAPI.friendlist#testing)
   
   - [Webserver Parameters](https://github.com/jamiephan/GameletAPI.friendlist#webserver-parameters)
   
-    - [Formats]()
+    - [Formats](https://github.com/jamiephan/GameletAPI.friendlist#formats)
     
-    - [Query parameters]()
+    - [Query parameters](https://github.com/jamiephan/GameletAPI.friendlist#query-parameters)
   
   - [Example](https://github.com/jamiephan/GameletAPI.friendlist#example)
 
