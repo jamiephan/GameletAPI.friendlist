@@ -23,12 +23,17 @@ require realpath(__DIR__ . '/class.webserver.index.php');
 $app = new \Slim\App();
 
 $app->get('/', function ($request, $response, $args) {
-    header('Content-Type: application/json;charset=utf-8');
-    $error = json_encode(array(
-        "error" => "Please provide an username."
-        ), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-    die($error);
 
+    header('Content-Type: application/json;charset=utf-8');
+
+    $error = json_encode(array(
+
+        "error" => "Please provide an username."
+
+        ), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+
+    die($error);
+    
 });
 
 $app->get('/{username}[/{dataType}]', function ($request, $response, $args) {
@@ -44,7 +49,6 @@ $app->get('/{username}[/{dataType}]', function ($request, $response, $args) {
     $webserver->execute();
 
     if (array_key_exists("callback", $params)) {
-
 
         if (strlen($params["callback"]) > 0) {
 

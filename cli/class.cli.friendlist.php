@@ -76,30 +76,54 @@ class friendlist_cli{
 			echo "Thank you for using this program! --Jamie Phan [Lovemelody]"    . "\r\n";
 	}
 	public function execute(){
+		
 		$friendlist = new GameletAPI_friendlist($this->username);
+		
 		$friendlist->execute();
+		
 		if ($friendlist->error !== false) {
+		
 			die($friendlist->error);
+		
 		}
+		
 		$this->error = false;
+		
 		$this->listArr = $friendlist->getFriendListArray;
+		
 		$this->executeTime = $friendlist->executeTime;
+		
 		$this->listNumber = $friendlist->getFriendListNumber;
+		
 		$this->IDkey = $friendlist->userIDKey;
+		
 		$this->Nicknamekey = $friendlist->userNicknameKey;
+
 	}
 	public function output($path){
+		
 		$format = explode(".", $path);
+		
 		$format = strtolower(end($format));
+		
 		$this->outputformat = $format;
+		
 		$this->path = $path;
+		
 		$fileStream = fopen($path, 'w') or die("Error: The path for " . $path . " is not accessable.");
+		
 		$content = $this->compile();
+		
 		if (file_put_contents($path, $content)) { 
+		
 		  $this->error = false;
+		
 		} else { 
+		
 		  $this->error =  "Error: Failed to save the file to " . $path . ".";
+		
 		} 
+		
 		fclose($fileStream);
 	}
 
@@ -112,66 +136,119 @@ class friendlist_cli{
 		echo $this->_compileTXT();
 	}
 	public function compile(){
+
 		$content = "";
+
 		switch ($this->outputformat) {
+
 		    case "json":
+
 		        $content = $this->_compileJSON();
+
 		        break;
+
 		    case "php":
+
 		        $content = $this->_compilePHP();
+
 		        break;
+
 		   	case "xml":
+
 		        $content = $this->_compileXML();
+
 		        break;
+
 		    case "csv":
+
 		        $content = $this->_compileCSV();
+
 		        break;
+
 		    case "txt":
+
 		    	$content = $this->_compileTXT();
+
 		    	break;
+
 		    default:
-		    	//TODO: Change this something else >.>
+
 		    	$content = $this->_compileTXT();
+
 		    	$this->outputformat = "txt";
+
 		    	break;
+
 		}	
+
 		return $content;
+
 	}
+
 	private function _compileJSON(){
+
 		return json_encode($this->listArr, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+
 	}
+
 	private function _compilePHP(){
+		
 		$string = "<?php"."\r\n";
+		
 		$string .= "\t\$GameletAPI_friendlist = array(" . "\r\n";
+		
 		foreach ($this->listArr as $array) {
-			# "userID" => 
+		
 			$string .= "\t\t" . 'array(' . "\r\n";
+		
 			$string .= "\t\t\t" . '"' . $this->IDkey . '" => "' . $array[$this->IDkey] . '",' . "\r\n";
+		
 			$string .= "\t\t\t" . '"' . $this->Nicknamekey . '" =>"' . $array[$this->Nicknamekey] . '"' . "\r\n";
+		
 			$string .= "\t\t" . '),' . "\r\n";
+		
 		}
+		
 		$string .= "\t);" . "\r\n";
+		
 		$string .= "?>"."\r\n";
+		
 		return $string;
+
 	}
+
 	private function _compileXML(){
 		// $xml = new SimpleXMLElement('<friendlist/>');
 		// array_walk_recursive($this->listArr, array($xml, 'addChild'));
 		// return $xml->asXML();
 		$string = '<?xml version="1.0"?>' . "\r\n";
+
 		$string .= '<friendlist>' . "\r\n";
+
 		foreach ($this->listArr as $array) {
+
 			$string .= "\t".'<friend>' . "\r\n";
+
 				$string .= "\t\t".'<'.$this->IDkey.'>' . "\r\n";
+
 					$string .= "\t\t\t".$array[$this->IDkey] . "\r\n";
+
 				$string .= "\t\t".'</'.$this->IDkey.'>' . "\r\n";
+
 				$string .= "\t\t".'<'.$this->Nicknamekey.'>' . "\r\n";
+
 					$string .= "\t\t\t".$array[$this->Nicknamekey] . "\r\n";
+
 				$string .= "\t\t".'</'.$this->Nicknamekey.'>' . "\r\n";
+
 			$string .= "\t".'</friend>' . "\r\n";
+
 		}
+
 		$string .= '</friendlist>';
+
 		return $string;
+
 	}
 	private function _compileCSV(){
 		$string = "";
@@ -181,23 +258,41 @@ class friendlist_cli{
 		return $string;
 	}
 	private function _compileTXT(){
+
 		$string = "Friend list for " . $this->username . " (http://tw.gamelet.com/user.do?username=" . $this->username  . ")";
+
 		$string .= "\r\n\r\n";
+
 		error_reporting(0);
+
 		date_default_timezone_set(date_default_timezone_get());
+
 		error_reporting(1);
+
 		$date = new Datetime();
+
     	$date = $date->format('l jS \of F Y h:i:s A');
+
 		$string .= "Generated date: " . $date ."\r\n";
+
 		$string .= "Execution time: " . $this->executeTime ." seconds\r\n";
+
 		$string .= "Total number of friends: " . $this->listNumber ."\r\n";
+
 		foreach ($this->listArr as $array) {
+
 			$string .= "\r\n\r\n";
+
 			$string .= $this->IDkey . ": " . $array[$this->IDkey] . "\r\n";
+
 			$string .= $this->Nicknamekey. ": " . $array[$this->Nicknamekey];
+
 		}
+
 		return $string;
+
 	}
+
 }
 
 ?>
