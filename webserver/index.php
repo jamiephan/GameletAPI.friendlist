@@ -84,7 +84,18 @@ $app->get('/{username}[/{dataType}]', function ($request, $response, $args) {
     header("access-control-allow-methods:GET, POST");
     header("access-control-allow-origin:*");
 
+    if (array_key_exists("forceDownload", $params)) {
+
+        if ($webserver->datatype == "jsonp") {
+            $webserver->datatype = "json";
+        }
+
+        header('Content-Disposition: attachment; filename="friendlist.' . $webserver->datatype . '"');
+
+    } 
+    
     die($webserver->compiledContent);
+
 
 
 });

@@ -89,6 +89,8 @@ class index_webserver {
 				
 		}
 
+		$this->datatype = strtolower($datatype);
+
 		switch (strtolower($datatype)) {
 
 		    case "json":
