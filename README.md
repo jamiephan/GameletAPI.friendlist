@@ -307,7 +307,7 @@ The webserver also allow query parameters, the supported params are:
 
 - `NicknameKey` - Set the key for Nickname, default: `userNickname`
 
-- `forceDownload` - This will force the file to be downloaded from the browser (it ill keep the file extension as user specified, but will only convert `jsonp` into `json`). The default file name is `friendlist`, this cannot be changed, but will able in the future commits.
+- `forceDownload` - This will force the file to be downloaded from the browser (it ill keep the file extension as user specified, but will only convert `jsonp` into `json`). The default file name is `friendlist-{username}`, this cannot be changed, but will able in  future commits.
 
 Example: `http://localhost:8080/jamiephan/json?IDKey=userID&NicknameKey=userNickname`
 
@@ -332,7 +332,7 @@ The webserver code in this repo had been hosted in https://friendlist.jamiephan.
 
 - https://friendlist.jamiephan.net/lovemelody02/csv?forceDownload
 
-  - Show friends with the username `lovemelody02` and force the browser to download the file `friendlist.csv`
+  - Show friends with the username `lovemelody02` and force the browser to download the file `friendlist-lovemelody02.csv`
 
 - https://friendlist.jamiephan.net/jamiephan/jsonp?callback=console.log
 
