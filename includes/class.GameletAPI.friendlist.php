@@ -17,7 +17,7 @@
 //                   |                https://www.jamiephan.net|
 //                   |tw.gamelet.com/user.do?username=jamiephan|
 //                   +-----------------------------------------+
-require __DIR__ . '/../vendor/autoload.php';
+require realpath(__DIR__ . '/../vendor/autoload.php');
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Pool;
