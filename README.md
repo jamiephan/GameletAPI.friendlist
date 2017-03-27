@@ -133,18 +133,151 @@ The tool will detect the file extension you had specified and output regarding t
 
 ## Using the build-in Webserver script
 
-# !STILL UNDER DEVELOPMENT!
+The script had alerady configured to run as a webserver  with URL routing, do not use it under command line interface.
+
+To start using PHP build in server command:
+
+`php -S localhost:8080 -t webserver webserver/index.php` (`8080` is the port number, change it as you desire.)
+
+As the webserver using URL routing, some confuguations must be done with specific server.
+
+**Apache configuration**
+
+Place a `.htaccess` file under `webserver/` with the content of:
+
+```
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]
+```
+
+Make sure that the `httpd.conf` have configured `AllowOverride All` for `.htaccess` usage.
+
+**Nginx configuration**
+
+This config file assumes:
+
+- domain name (`server name`): `example.com`
+
+- PHP-FPM server port: `9000`
+ 
+ In addition, you need to configure the path for `error_log`, `access_log`, `root`.
+
+```
+server {
+    listen 80;
+    server_name example.com; 
+    index index.php;
+    error_log /path/to/example.error.log;
+    access_log /path/to/example.access.log;
+    root /path/to/public;
+
+    location / {
+        try_files $uri /index.php$is_args$args;
+    }
+
+    location ~ \.php {
+        try_files $uri =404;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param SCRIPT_NAME $fastcgi_script_name;
+        fastcgi_index index.php;
+        fastcgi_pass 127.0.0.1:9000;
+    }
+}
+```
+
+**IIS**
+
+Create a file named `web.config` and place under `webserver/` with the content of:
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <system.webServer>
+        <rewrite>
+            <rules>
+                <rule name="slim" patternSyntax="Wildcard">
+                    <match url="*" />
+                    <conditions>
+                        <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+                        <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
+                    </conditions>
+                    <action type="Rewrite" url="index.php" />
+                </rule>
+            </rules>
+        </rewrite>
+    </system.webServer>
+</configuration>
+```
+
+**lighttpd** (>= 1.4.24)
+
+Configure the lighthttpd with the following code:
+
+`url.rewrite-if-not-file = ("(.*)" => "/index.php/$0")`
 
 
+## Testing
 
+Open the webpage with the PHP engine running, assuming the host is `localhost` and the port is `8080`.
 
+`http://localhost:8080`
 
+You should see an error message:
 
+```
+{
+    "error": "Please provide an username."
+}
+```
+Now add a username to the query:
 
+`http://localhost:8080/jamiephan`
 
+If you see a list of usernames, then the server had configured properly.
 
+## Webserver Parameters
 
+**Formats**
 
+As like the CLI application, the webserver also allows you to justify the output format. After `/username`, append a `/format`. Example: `http://localhost:8080/jamiephan/xml`.
+
+The supported formats are:
+
+- `/json`
+
+- `/jsonp` (Please see additional info below)
+
+- `/xml`
+
+- `/csv`
+
+- `/txt`
+
+All other formats (including not specify) will be considered as `/json`.
+
+**Query parameters**
+
+The webserver also allow query parameters, the supported params are:
+
+- `IDKey` - Set the key for ID, default: `userID`
+
+- `NicknameKey` - Set the key for Nickname, default: `userNickname`
+
+Example: `http://localhost:8080/jamiephan/json?IDKey=userID&NicknameKey=userNickname`
+
+The sever also supports `JSONP` callback. If you chosen `/jsonp`, please also specify the callback function name.
+
+- `callback` - Set the callback for JSONP, the default is `friendlist`;
+
+Example: `http://localhost:8080/jamiephan/jsonp?callback=console.log`
+
+## Example
+
+The webserver code in this repo had been hosted in https://friendlist.jamiephan.net/. You can use it as to test out the parameters remotely, just replace `http://localhost:8080` with `https://friendlist.jamiephan.net`.
 
 
 
