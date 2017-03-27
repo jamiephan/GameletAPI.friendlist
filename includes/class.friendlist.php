@@ -53,9 +53,14 @@ class GameletAPI_friendlist {
 
 	public function execute() {
 
+		if ($this->error !== false) {
+			return false;
+		}
+
 		if (!$this->_isUserExist()) {
 				
 			$this->error = "Username ".$this->username." does not exist.";
+
 		} else {
 
 			//Derp...I hate sort()
