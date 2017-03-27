@@ -325,7 +325,7 @@ The webserver code in this repo had been hosted in https://friendlist.jamiephan.
 - https://friendlist.jamiephan.net/100000380302236%40facebook.com/txt
   - Show friends with the username `100000380302236%40facebook.com` and output a human readable format (`txt` is not to be used programatically).
 
-- https://friendlist.jamiephan.net/lovemelody01/json?IDKey=ID&NicknameKey=Nickname
+- https://friendlist.jamiephan.net/lovemelody01/xml?IDKey=ID&NicknameKey=Nickname
   - Show friends with the username `lovemelody01` and output as json with the userID key `ID` and userNickname key `Nickname`.
 
 - https://friendlist.jamiephan.net/jamiephan/jsonp?callback=console.log
