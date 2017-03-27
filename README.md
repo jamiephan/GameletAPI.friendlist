@@ -289,7 +289,7 @@ The supported formats are:
 
 - `/json`
 
-- `/jsonp` (Please see additional info below)
+- `/jsonp` (Please see additional info [below](https://github.com/jamiephan/GameletAPI.friendlist#query-parameters))
 
 - `/xml`
 
@@ -318,6 +318,23 @@ Example: `http://localhost:8080/jamiephan/jsonp?callback=console.log`
 ## Example
 
 The webserver code in this repo had been hosted in https://friendlist.jamiephan.net/. You can use it as to test out the parameters remotely, just replace `http://localhost:8080` with `https://friendlist.jamiephan.net`.
+
+- https://friendlist.jamiephan.net/jamiephan
+  - Show friends with the username `jamiephan` (Default using JSON).
+
+- https://friendlist.jamiephan.net/100000380302236%40facebook.com/txt
+  - Show friends with the username `100000380302236%40facebook.com` and output a human readable format (`txt` is not to be used programatically).
+
+- https://friendlist.jamiephan.net/lovemelody01/json?IDKey=ID&NicknameKey=Nickname
+  - Show friends with the username `lovemelody01` and output as json with the userID key `ID` and userNickname key `Nickname`.
+
+- https://friendlist.jamiephan.net/jamiephan/jsonp?callback=console.log
+
+  - show friends with the username `jamiephan`, output with `JSON` and have the callback of `console.log`
+
+
+
+
 
 
 
