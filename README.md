@@ -307,6 +307,8 @@ The webserver also allow query parameters, the supported params are:
 
 - `NicknameKey` - Set the key for Nickname, default: `userNickname`
 
+- `forceDownload` - This will force the file to be downloaded from the browser. (Will keep the file extension as user specified, but will only convert `jsonp` into `json`.)
+
 Example: `http://localhost:8080/jamiephan/json?IDKey=userID&NicknameKey=userNickname`
 
 The sever also supports `JSONP` callback. If you chosen `/jsonp`, please also specify the callback function name.
