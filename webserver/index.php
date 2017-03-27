@@ -46,7 +46,7 @@ $app->get('/{username}[/{dataType}]', function ($request, $response, $args) {
     if (array_key_exists("callback", $params)) {
 
 
-        if (strlen($params["callback"]) > 1) {
+        if (strlen($params["callback"]) > 0) {
 
             $callback = $params["callback"];
 
