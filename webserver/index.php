@@ -18,7 +18,7 @@
 //                   |tw.gamelet.com/user.do?username=jamiephan|
 //                   +-----------------------------------------+
 
-require __DIR__ . '/class.webserver.router.php';
+require __DIR__ . '/class.webserver.index.php';
 
 $app = new \Slim\App();
 
@@ -33,7 +33,7 @@ $app->get('/', function ($request, $response, $args) {
 
 $app->get('/{username}[/{dataType}]', function ($request, $response, $args) {
 
-	$webserver = new router_webserver($args["username"]);
+	$webserver = new index_webserver($args["username"]);
 	$params = $request->getQueryParams();
 
 	$IDKey = (array_key_exists("IDKey", $params) ? $params["IDKey"]: null);
