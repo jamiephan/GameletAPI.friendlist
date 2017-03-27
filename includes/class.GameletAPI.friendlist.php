@@ -78,7 +78,7 @@ class friendlist extends GameletAPI {
 
 	}
 
-	public function getKey($ID = "userID", $Nickname = "userNickname"){
+	public function setKey($ID = "userID", $Nickname = "userNickname"){
 
 		if (preg_match("/^[a-zA-Z]+$/", $ID) && preg_match("/^[a-zA-Z]+$/", $Nickname)) {
 			
@@ -92,7 +92,7 @@ class friendlist extends GameletAPI {
 
 	}
 
-	public function _getFriendListPageNumber(){
+	private function _getFriendListPageNumber(){
 
 		$content = $this->cachedHTML;
 
