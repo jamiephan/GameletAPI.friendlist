@@ -90,7 +90,7 @@ $app->get('/{username}[/{dataType}]', function ($request, $response, $args) {
             $webserver->datatype = "json";
         }
 
-        header('Content-Disposition: attachment; filename="friendlist.' . $webserver->datatype . '"');
+        header('Content-Disposition: attachment; filename="friendlist-'. $webserver->username . '.' . $webserver->datatype . '"');
 
     } 
     
