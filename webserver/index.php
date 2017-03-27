@@ -23,11 +23,11 @@ require realpath(__DIR__ . '/class.webserver.index.php');
 $app = new \Slim\App();
 
 $app->get('/', function ($request, $response, $args) {
-
+    header('Content-Type: application/json;charset=utf-8');
     $error = json_encode(array(
         "error" => "Please provide an username."
         ), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-    $response->getBody()->write($error);
+    die($error);
 
 });
 
@@ -43,7 +43,25 @@ $app->get('/{username}[/{dataType}]', function ($request, $response, $args) {
 
     $webserver->execute();
 
-    $webserver->compile((array_key_exists("dataType", $args) ? $args["dataType"] : "json"), (array_key_exists("callback", $params) ? $params["callback"] : "friendlist"));
+    if (array_key_exists("callback", $params)) {
+
+
+        if (strlen($params["callback"]) > 1) {
+
+            $callback = $params["callback"];
+
+        } else {
+
+            $callback = "friendlist";
+
+        }
+
+    } else {
+
+        $callback = "friendlist";
+    }    
+
+    $webserver->compile((array_key_exists("dataType", $args) ? $args["dataType"] : "json"), $callback);
 
     header("access-control-allow-methods:GET, POST");
     header("access-control-allow-origin:*");

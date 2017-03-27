@@ -24,6 +24,8 @@ class index_webserver {
 	
 	public $username;
 
+	private $error = false;
+
 	function __construct($username){
 		
 		$this->username = $username;
@@ -45,15 +47,28 @@ class index_webserver {
 
 		if ($friendlist->error !== false) {
 
-			$this->result = $friendlist->error;
+			$this->error = $friendlist->error;
 			
 		} else {
 			$this->result = $friendlist->getFriendListArray;
+			$this->listNumber = $friendlist->getFriendListNumber;
+			$this->executeTime = $friendlist->executeTime;
 		}
 
 	}
 
 	public function compile($datatype, $callback){
+
+		if ($this->error !== false) {
+
+			header('Content-Type: application/json;charset=utf-8');
+			$this->compiledContent = json_encode(array(
+		        "error" => $this->error
+		        ), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+
+			return false;
+				
+		}
 
 		switch (strtolower($datatype)) {
 		    case "json":
@@ -122,7 +137,9 @@ class index_webserver {
 	private function _compileTXT(){
 		$string = "Friend list for " . $this->username . " (http://tw.gamelet.com/user.do?username=" . $this->username  . ")";
 		$string .= "\r\n\r\n";
+		error_reporting(0);
 		date_default_timezone_set(date_default_timezone_get());
+		error_reporting(1);
 		$date = new Datetime();
     	$date = $date->format('l jS \of F Y h:i:s A');
 		$string .= "Generated date: " . $date ."\r\n";

@@ -183,7 +183,9 @@ class friendlist_cli{
 	private function _compileTXT(){
 		$string = "Friend list for " . $this->username . " (http://tw.gamelet.com/user.do?username=" . $this->username  . ")";
 		$string .= "\r\n\r\n";
+		error_reporting(0);
 		date_default_timezone_set(date_default_timezone_get());
+		error_reporting(1);
 		$date = new Datetime();
     	$date = $date->format('l jS \of F Y h:i:s A');
 		$string .= "Generated date: " . $date ."\r\n";
