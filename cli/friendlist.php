@@ -18,9 +18,9 @@
 //                   |tw.gamelet.com/user.do?username=jamiephan|
 //                   +-----------------------------------------+
 error_reporting(0);
-require __DIR__ . "/class.cli.friendlist.php";
+require realpath(__DIR__ . "/class.cli.friendlist.php");
 if (php_sapi_name() == 'cli') {
-	require __DIR__ . '/../includes/class.friendlist.php';;
+	require realpath(__DIR__ . '/../includes/class.friendlist.php');
 	$options = getopt("u:o:h");
 	$cli = new friendlist_cli();
 	if (array_key_exists("h", $options) || sizeof($options) == 0) {

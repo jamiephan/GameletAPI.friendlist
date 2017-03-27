@@ -18,7 +18,7 @@
 //                   |tw.gamelet.com/user.do?username=jamiephan|
 //                   +-----------------------------------------+
 
-require __DIR__ . '/class.webserver.index.php';
+require realpath(__DIR__ . '/class.webserver.index.php');
 
 $app = new \Slim\App();
 

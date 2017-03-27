@@ -18,7 +18,7 @@
 //                   |tw.gamelet.com/user.do?username=jamiephan|
 //                   +-----------------------------------------+
 
-require __DIR__ . '/../includes/class.friendlist.php';
+require realpath(__DIR__ . '/../includes/class.friendlist.php');
 
 class index_webserver {
 	
