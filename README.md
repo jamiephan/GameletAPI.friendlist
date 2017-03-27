@@ -17,17 +17,54 @@
                    |tw.gamelet.com/user.do?username=jamiephan|
                    +-----------------------------------------+
  ```
-## What is GameletAPI friendlist?
+# What is GameletAPI friendlist?
 
 GameletAPI friendlist provide API to access the friend list in [Gamelet.com](http://tw.gamelet.com/games.do) with multi-threading. Also providing CLI (Command Line Interface) and Web server for users.
 
 ---
-## Requirements
+# Table of contents
+
+- [Requirements](https://github.com/jamiephan/GameletAPI.friendlist#requirements)
+
+- [Installation](https://github.com/jamiephan/GameletAPI.friendlist#installation)
+
+- [Intergrate GameletAPI.friendlist to your project.](https://github.com/jamiephan/GameletAPI.friendlist#intergrate-gameletapifriendlist-to-your-project)
+
+  - [Additionally it provides more information and settings.](https://github.com/jamiephan/GameletAPI.friendlist#additionally-it-provides-more-information-and-settings)
+  
+- [Using the command line tool](https://github.com/jamiephan/GameletAPI.friendlist#using-the-command-line-tool)
+  
+  - [Formats for CLI]()
+
+- [Using the build-in Webserver script](https://github.com/jamiephan/GameletAPI.friendlist#using-the-build-in-webserver-script)
+
+  - [Configuration](https://github.com/jamiephan/GameletAPI.friendlist#using-the-build-in-webserver-script)
+  
+    - [Apache]()
+    
+    - [Nginx]()
+    
+    - [IIS]()
+    
+    - [lighttpd (>= 1.4.24)]()
+  
+  - [Testing](https://github.com/jamiephan/GameletAPI.friendlist#testing)
+  
+  - [Webserver Parameters](https://github.com/jamiephan/GameletAPI.friendlist#webserver-parameters)
+  
+    - [Formats]()
+    
+    - [Query parameters]()
+  
+  - [Example](https://github.com/jamiephan/GameletAPI.friendlist#example)
+
+---
+# Requirements
 - PHP: `>=5.6.0`
 - PHP [Composer](https://getcomposer.org/)
 - Active network connection to [Gamelet](http://tw.gamelet.com/games.do).
 ---
-## Installation
+# Installation
 ```shell
 git clone https://github.com/jamiephan/GameletAPI.friendlist.git
 #Download the repository from github and clone to the current directory
@@ -39,7 +76,7 @@ composer install
 #Install the dependencies with composer
 ```
 ---
-## Intergrate GameletAPI.friendlist to your project.
+# Intergrate GameletAPI.friendlist to your project.
 You can modify the following code to meet your needs, the following is just an simple example.
 ```PHP
 <?php
@@ -72,7 +109,7 @@ You can modify the following code to meet your needs, the following is just an s
 
 ```
 
-#### Additionally it provides more information and settings.
+## Additionally it provides more information and settings.
 
 Before `$friendlist->execute()`:
 
@@ -86,7 +123,7 @@ After `$friendlist->execute()`:
 
 - `$friendlist->getFriendListNumber` - Returns the total amount of friend.
 ---
-## Using the command line tool
+# Using the command line tool
 
 Navigate to the command line tool folder under `cli`
 
@@ -114,6 +151,7 @@ Examples: php friendlist.php -u jamiephan -o /home/folder/list.json
           php friendlist.php -u lovemelody01 -o ../friends.xml
           php friendlist.php -h
 ```
+## Formats for CLI:
 
 The tool will detect the file extension you had specified and output regarding to their format. The supported list are:
 
@@ -131,7 +169,7 @@ The tool will detect the file extension you had specified and output regarding t
 
 ---
 
-## Using the build-in Webserver script
+# Using the build-in Webserver script
 
 The script had alerady configured to run as a webserver  with URL routing, do not use it under command line interface.
 
@@ -139,9 +177,11 @@ To start using PHP build in server command:
 
 `php -S localhost:8080 -t webserver webserver/index.php` (`8080` is the port number, change it as you desire.)
 
+## Configuration
+
 As the webserver using URL routing, some confuguations must be done with specific server.
 
-**Apache configuration**
+#### Apache configuration
 
 Place a `.htaccess` file under `webserver/` with the content of:
 
@@ -154,7 +194,7 @@ RewriteRule ^ index.php [QSA,L]
 
 Make sure that the `httpd.conf` have configured `AllowOverride All` for `.htaccess` usage.
 
-**Nginx configuration**
+#### Nginx configuration
 
 This config file assumes:
 
@@ -189,7 +229,7 @@ server {
 }
 ```
 
-**IIS**
+#### IIS
 
 Create a file named `web.config` and place under `webserver/` with the content of:
 
@@ -213,7 +253,7 @@ Create a file named `web.config` and place under `webserver/` with the content o
 </configuration>
 ```
 
-**lighttpd** (>= 1.4.24)
+#### lighttpd (>= 1.4.24)
 
 Configure the lighthttpd with the following code:
 
@@ -241,7 +281,7 @@ If you see a list of usernames, then the server had configured properly.
 
 ## Webserver Parameters
 
-**Formats**
+#### Formats
 
 As like the CLI application, the webserver also allows you to justify the output format. After `/username`, append a `/format`. Example: `http://localhost:8080/jamiephan/xml`.
 
@@ -259,7 +299,7 @@ The supported formats are:
 
 All other formats (including not specify) will be considered as `/json`.
 
-**Query parameters**
+#### Query parameters
 
 The webserver also allow query parameters, the supported params are:
 
