@@ -103,15 +103,15 @@ class index_webserver {
 
 		    case "jsonp":
 
-		    	header('Content-Type: application/json;charset=utf-8');
+		    	header('Content-Type: application/javascript;charset=utf-8');
 
 		        $content = $this->_compileJSONP($callback);
 
 		        break;
 
-		   	case "xml":
+		   case "xml":
 
-		   		header("content-type:text/xml;charset=utf-8");
+		   	header("content-type:text/xml;charset=utf-8");
 
 		        $content = $this->_compileXML();
 
@@ -119,7 +119,7 @@ class index_webserver {
 
 		    case "csv":
 
-		   		// header("content-type:text/csv;charset=utf-8");
+		   	// header("content-type:text/csv;charset=utf-8");
 
 		    	header("content-type:text/plain;charset=utf-8");
 
