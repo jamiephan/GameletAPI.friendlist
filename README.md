@@ -24,39 +24,39 @@ GameletAPI friendlist provide API to access the friend list in [Gamelet.com](htt
 ---
 # Table of contents
 
-- [Requirements](https://github.com/jamiephan/GameletAPI.friendlist#requirements)
+- [Requirements](https://github.com/jamiephan/GameletAPI.friendlist/blob/master/README.md#requirements)
 
-- [Installation](https://github.com/jamiephan/GameletAPI.friendlist#installation)
+- [Installation](https://github.com/jamiephan/GameletAPI.friendlist/blob/master/README.md#installation)
 
-- [Intergrate GameletAPI.friendlist to your project.](https://github.com/jamiephan/GameletAPI.friendlist#intergrate-gameletapifriendlist-to-your-project)
+- [Intergrate GameletAPI.friendlist to your project.](https://github.com/jamiephan/GameletAPI.friendlist/blob/master/README.md#intergrate-gameletapifriendlist-to-your-project)
 
-  - [Additionally it provides more information and settings.](https://github.com/jamiephan/GameletAPI.friendlist#additionally-it-provides-more-information-and-settings)
+  - [Additionally it provides more information and settings.](https://github.com/jamiephan/GameletAPI.friendlist/blob/master/README.md#additionally-it-provides-more-information-and-settings)
   
-- [Using the command line tool](https://github.com/jamiephan/GameletAPI.friendlist#using-the-command-line-tool)
+- [Using the command line tool](https://github.com/jamiephan/GameletAPI.friendlist/blob/master/README.md#using-the-command-line-tool)
   
-  - [Formats for CLI](https://github.com/jamiephan/GameletAPI.friendlist#formats-for-cli)
+  - [Formats for CLI](https://github.com/jamiephan/GameletAPI.friendlist/blob/master/README.md#formats-for-cli)
 
-- [Using the build-in Webserver script](https://github.com/jamiephan/GameletAPI.friendlist#using-the-build-in-webserver-script)
+- [Using the build-in Webserver script](https://github.com/jamiephan/GameletAPI.friendlist/blob/master/README.md#using-the-build-in-webserver-script)
 
-  - [Configuration](https://github.com/jamiephan/GameletAPI.friendlist#using-the-build-in-webserver-script)
+  - [Configuration](https://github.com/jamiephan/GameletAPI.friendlist/blob/master/README.md#using-the-build-in-webserver-script)
   
-    - [Apache](https://github.com/jamiephan/GameletAPI.friendlist#apache-configuration)
+    - [Apache](https://github.com/jamiephan/GameletAPI.friendlist/blob/master/README.md#apache-configuration)
     
-    - [Nginx](https://github.com/jamiephan/GameletAPI.friendlist#nginx-configuration)
+    - [Nginx](https://github.com/jamiephan/GameletAPI.friendlist/blob/master/README.md#nginx-configuration)
     
-    - [IIS](https://github.com/jamiephan/GameletAPI.friendlist#iis)
+    - [IIS](https://github.com/jamiephan/GameletAPI.friendlist/blob/master/README.md#iis)
     
-    - [lighttpd (>= 1.4.24)](https://github.com/jamiephan/GameletAPI.friendlist#lighttpd--1424)
+    - [lighttpd (>= 1.4.24)](https://github.com/jamiephan/GameletAPI.friendlist/blob/master/README.md#lighttpd--1424)
   
-  - [Testing](https://github.com/jamiephan/GameletAPI.friendlist#testing)
+  - [Testing](https://github.com/jamiephan/GameletAPI.friendlist/blob/master/README.md#testing)
   
-  - [Webserver Parameters](https://github.com/jamiephan/GameletAPI.friendlist#webserver-parameters)
+  - [Webserver Parameters](https://github.com/jamiephan/GameletAPI.friendlist/blob/master/README.md#webserver-parameters)
   
-    - [Formats](https://github.com/jamiephan/GameletAPI.friendlist#formats)
+    - [Formats](https://github.com/jamiephan/GameletAPI.friendlist/blob/master/README.md#formats)
     
-    - [Query parameters](https://github.com/jamiephan/GameletAPI.friendlist#query-parameters)
+    - [Query parameters](https://github.com/jamiephan/GameletAPI.friendlist/blob/master/README.md#query-parameters)
   
-  - [Example](https://github.com/jamiephan/GameletAPI.friendlist#example)
+  - [Example](https://github.com/jamiephan/GameletAPI.friendlist/blob/master/README.md#example)
 
 ---
 # Requirements
