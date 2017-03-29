@@ -21,6 +21,8 @@
 
 GameletAPI friendlist provide API to access the friend list in [Gamelet.com](http://tw.gamelet.com/games.do) with multi-threading. Also providing CLI (Command Line Interface) and Web server for users.
 
+Gamelet Discussion link: http://tw.gamelet.com/discussion.do?type=TALK&id=669754
+
 ---
 # Table of contents
 
@@ -309,7 +311,7 @@ The webserver also allow query parameters, the supported params are:
 
 - `NicknameKey` - Set the key for Nickname, default: `userNickname`
 
-- `forceDownload` - This will force the file to be downloaded from the browser (it will keep the file extension as specified, but ot will convert `jsonp` into `json`). The file name is `friendlist-{username}.{format}`, for example `friendlist-jamiephan.json`
+- `forceDownload` - This will force the file to be downloaded from the browser (it will keep the file extension as specified, but will only convert `jsonp` into `js`). The file name is `friendlist-{username}.{format}`, for example `friendlist-jamiephan.json`
 
 Example: `http://localhost:8080/jamiephan/json?IDKey=userID&NicknameKey=userNickname`
 
@@ -339,17 +341,3 @@ The webserver code in this repo had been hosted in https://friendlist.jamiephan.
 - https://friendlist.jamiephan.net/jamiephan/jsonp?callback=console.log
 
   - show friends with the username `jamiephan`, output with `JSON` and have the callback of `console.log`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
