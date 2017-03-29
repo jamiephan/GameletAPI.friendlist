@@ -87,7 +87,7 @@ $app->get('/{username}[/{dataType}]', function ($request, $response, $args) {
     if (array_key_exists("forceDownload", $params)) {
 
         if ($webserver->datatype == "jsonp") {
-            $webserver->datatype = "json";
+            $webserver->datatype = "js";
         }
 
         header('Content-Disposition: attachment; filename="friendlist-'. $webserver->username . '.' . $webserver->datatype . '"');
